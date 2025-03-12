@@ -544,3 +544,118 @@ $scope.submittedData.push(angular.copy($scope.formData));
 </body>
 
 </html>
+
+
+
+##Create an app using Flutter to implement an Image Gallery
+
+import 'package:flutter/material.dart';
+void main() {
+runApp(MyApp());
+}
+class MyApp extends StatelessWidget {
+@override
+Widget build(BuildContext context) {
+return MaterialApp(
+title: 'Image Gallery',
+theme: ThemeData(
+primarySwatch: Colors.blue,
+),
+home: ImageGallery(),
+);
+}
+}
+class ImageGallery extends StatelessWidget {
+final List<String> imageUrls = [
+
+// Add your image URLs here
+
+];
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(title: Text('Image Gallery')),
+body: GridView.builder(
+gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+crossAxisCount: 2,
+),
+itemCount: imageUrls.length,
+itemBuilder: (context, index) {
+return GestureDetector(
+onTap: () {
+Navigator.push(
+context,
+MaterialPageRoute(
+builder: (context) => FullScreenImage(imageUrl:
+imageUrls[index]),
+),
+);
+},
+child: Image.network(imageUrls[index], fit: BoxFit.cover),
+);
+},
+),
+);
+}
+class FullScreenImage extends StatelessWidget {
+final String imageUrl;
+FullScreenImage({required this.imageUrl});
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(title: Text('Full Screen Image')),
+body: Center(
+child: Image.network(imageUrl),
+),
+);
+}
+}
+
+
+
+## Create an app using Flutter to demonstrate the use of different layouts
+## Column Layout code:
+
+import 'package:flutter/material.dart';
+void main() {
+runApp(MyApp());
+}
+class MyApp extends StatelessWidget {
+@override
+Widget build(BuildContext context) {
+return MaterialApp(
+home: ColumnLayout(),
+);
+}
+}
+class ColumnLayout extends StatelessWidget {
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(title: Text('Column Layout')),
+body: Center(
+child: Column(
+mainAxisAlignment: MainAxisAlignment.center,
+children: <Widget>[
+Container(
+color: Colors.deepPurple.shade400,
+width: 100,
+height: 100
+),
+SizedBox(height: 20),
+Container(
+color: Colors.deepPurple.shade300,
+width: 100,
+height: 100
+),
+SizedBox(height: 20),
+Container(
+color: Colors.deepPurple.shade200,
+width: 100,
+height: 100
+),
+SizedBox(height: 20),
+Container(
+color: Colors.deepPurple.shade100,
+width: 100,
+height: 100

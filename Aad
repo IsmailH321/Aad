@@ -366,183 +366,94 @@ $scope.formSubmitted = false;
 ## html file
 
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
  <meta charset="UTF-8">
-
  <meta name="viewport" content="width=device-width,
-
 initial-scale=1.0">
-
  <title>AngularJS Simple Form</title>
-
  <script
-
 src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.
-
 2/angular.min.js"></script>
-
  <style>
-
  body {
-
  font-family: Arial, sans-serif;
-
  margin: 20px;
-
  }
-
  .form-container {
-
  margin-bottom: 20px;
-
  }
-
  table {
-
  width: 100%;
-
  border-collapse: collapse;
-
  }
-
  th, td {
-
  border: 1px solid #ddd;
-
  padding: 8px;
-
  }
-
  th {
-
  background-color: #f4f4f4;
-
  text-align: left;
-
  }
-
  </style>
-
 </head>
-
 <body ng-app="simpleFormApp"
-
 ng-controller="FormController">
 <div class="form-container">
-
  <h2>Simple AngularJS Form</h2>
-
  <form ng-submit="submitForm()">
-
  <label for="name">Name:</label>
-
  <input type="text" id="name"
-
 ng-model="formData.name" required>
-
  <br><br>
-
  <label for="email">Email:</label>
-
  <input type="email" id="email"
-
 ng-model="formData.email" required>
-
  <br><br>
-
  <label for="age">Age:</label>
-
  <input type="number" id="age"
-
 ng-model="formData.age" required>
-
  <br><br>
-
  <button type="submit">Submit</button>
-
  </form>
-
  </div>
-
  <div class="data-container">
-
  <h2>Submitted Data</h2>
-
  <table>
-
  <thead>
-
  <tr>
-
  <th>Name</th>
-
  <th>Email</th>
-
  <th>Age</th>
-
  <th>Action</th>
-
  </tr>
-
  </thead>
-
  <tbody>
-
  <tr ng-repeat="data in submittedData">
-
  <td>{{ data.name }}</td>
-
  <td>{{ data.email }}</td>
-
  <td>{{ data.age }}</td>
-
  <td><button
-
 ng-click="removeData($index)">Remove</button></td>
 </tr>
-
  </tbody>
-
  </table>
-
  </div>
-
  <script>
-
  angular.module('simpleFormApp',
-
 []).controller('FormController', function($scope) {
-
  $scope.formData = {};
-
  $scope.submittedData = [];
-
  $scope.submitForm = function() {
-
- 
-
 $scope.submittedData.push(angular.copy($scope.formData));
-
  $scope.formData = {};
-
  };
-
  $scope.removeData = function(index) {
-
  $scope.submittedData.splice(index, 1);
-
  };
-
  });
-
  </script>
-
 </body>
-
 </html>
 
 
@@ -659,3 +570,278 @@ Container(
 color: Colors.deepPurple.shade100,
 width: 100,
 height: 100
+),
+],
+),
+),
+);
+}
+}
+
+## Row Layout code:
+
+import 'package:flutter/material.dart';
+void main() {
+runApp(MyApp());
+}
+class MyApp extends StatelessWidget {
+@override
+Widget build(BuildContext context) {
+return MaterialApp(
+home: RowLayout(),
+);
+}
+}
+class RowLayout extends StatelessWidget {
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(title: Text('Row Layout')),
+body: Row(
+mainAxisAlignment: MainAxisAlignment.center,
+children: <Widget>[
+Container(
+color: Colors.pink.shade400,
+width: 100,
+height: 100
+),
+SizedBox(height: 20),
+Container(
+color: Colors.pink.shade300,
+width: 100,
+height: 100
+),
+SizedBox(height: 20),
+Container(
+color: Colors.pink.shade200,
+width: 100,
+height: 100
+),
+SizedBox(height: 20),
+Container(
+color: Colors.pink.shade100,
+width: 100,
+height: 100
+),
+],
+),
+);
+}
+}
+
+## Stack Layout:
+
+import 'package:flutter/material.dart';
+void main() {
+runApp(MyApp());
+}
+class MyApp extends StatelessWidget { @override
+Widget build(BuildContext context) { return MaterialApp(
+home: StackLayout(),
+);
+}
+}
+class StackLayout extends StatelessWidget { @override
+Widget build(BuildContext context) { return Scaffold(
+appBar: AppBar(title: Text('Stack Layout')), body: Center(
+child: Stack(
+children: <Widget>[
+Container(
+color: Colors.red,
+width: 800,
+height: 800,
+),
+Container(
+color: Colors.orange, width: 700,
+height: 700,
+),
+Container(
+color: Colors.yellow,
+width: 600,
+height: 600,
+),
+Container(
+color: Colors.green,
+width: 500,
+height: 500,
+),
+Container(
+color: Colors.blue,
+width: 400,
+height: 400,
+),
+Container(
+color: Colors.indigo,
+width: 300,
+height: 300,
+),
+Container(
+color: Colors.indigo.shade900, width: 200,
+height: 200,
+),
+],
+),
+),
+);
+}
+}
+
+## Grid Layout:
+
+import 'package:flutter/material.dart';
+void main() {
+runApp(MyApp());
+}
+class MyApp extends StatelessWidget { @override
+Widget build(BuildContext context) {
+return MaterialApp(
+home: GridViewLayout(),
+);
+}
+}
+class GridViewLayout extends StatelessWidget { @override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(title: Text('GridView Layout')), body: GridView.count(
+crossAxisCount: 2,
+children: <Widget>[
+Container(
+color: Color(0xFFFFC1C1),
+width:200,
+height:200,
+),
+Container(
+color: Color(0xFFC1E1C1),
+width:200,
+height:200,
+),
+Container(
+color: Color(0xFFE1C1FF),
+width:200,
+height:200,
+),
+Container(
+color: Color(0xFFFFE1C1),
+width:200,
+height:200,
+),
+Container(
+color: Color(0xFFC1D1FF),
+width:200,
+height:200,
+),
+Container(
+color: Color(0xFFFFF1C1),
+width:200,
+height:200,
+),
+],
+),
+);
+}
+}
+
+## List Layout
+
+import 'package:flutter/material.dart';
+void main() {
+runApp(
+MaterialApp(
+home: Scaffold(
+body: ListView(
+children: [
+ListTile(
+leading: Icon(Icons.favorite, color: Colors.red), title: Text('Favorite Item'),
+subtitle: Text('This is a favorite item with a heart icon'), ),
+ListTile(
+leading: Icon(Icons.shopping_cart, color: Colors.blue), title: Text('Shopping Cart'),
+subtitle: Text('Items in your cart ready for checkout'), ),
+ListTile(
+leading: Icon(Icons.call, color: Colors.green), title: Text('Call'),
+subtitle: Text('Dial a number for a phone call'), ),
+ListTile(
+leading: Icon(Icons.alarm, color: Colors.orange), title: Text('Alarm'),
+subtitle: Text('Set an alarm to remind you'), ),
+ListTile(
+leading: Icon(Icons.camera_alt, color: Colors.purple), title: Text('Camera'),
+subtitle: Text('Capture your favorite moments'), ),
+ListTile(
+leading: Icon(Icons.home, color: Colors.teal), title: Text('Home'),
+subtitle: Text('Go to the home screen'), ),
+], ) )
+) );
+}
+
+
+
+## Create an app using Flutter to demonstrate navigation in an App.
+
+import 'package:flutter/material.dart';
+void main() {
+runApp(MyApp());
+}
+class MyApp extends StatelessWidget { @override
+Widget build(BuildContext context) {
+return MaterialApp(
+title: 'Flutter Navigation Demo',
+theme: ThemeData(
+primarySwatch: Colors.blue,
+),
+initialRoute: '/',
+routes: {
+'/': (context) => HomeScreen(),
+'/second': (context) => SecondScreen(), '/third': (context) => ThirdScreen(),
+},
+);
+}
+}
+class HomeScreen extends StatelessWidget { @override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(title: Text("Home Screen")), body: Center(
+child: ElevatedButton(
+onPressed: () {
+Navigator.pushNamed(context, '/second'); },
+child: Text("Go to Second Screen"),
+),
+),
+);
+}
+}
+class SecondScreen extends StatelessWidget { @override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(title: Text("Second Screen")), body: Center(
+child: Column(
+mainAxisAlignment: MainAxisAlignment.center, children: [
+ElevatedButton(
+onPressed: () {
+Navigator.pushNamed(context, '/third');
+},
+child: Text("Go to Third Screen"),
+),
+ElevatedButton(
+onPressed: () {
+Navigator.pop(context);
+},
+child: Text("Go Back to Home Screen"),
+),
+],
+),
+),
+);
+}
+}
+class ThirdScreen extends StatelessWidget { @override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(title: Text("Third Screen")), body: Center(
+child: ElevatedButton(
+onPressed: () {
+Navigator.pop(context);
+},
+child: Text("Go Back to Second Screen"), ),
+),
+);
+}
+}

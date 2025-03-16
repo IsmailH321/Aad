@@ -1,847 +1,326 @@
-#Write a program to perform validation of a form using AngularJS
-##html file
+## Kotlin to implement control structures and loops.
 
-<!DOCTYPE html>
-<html lang="en" ng-app="validationApp">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AngularJS Form Validation</title>
-<script
-src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.
-js"></script>
-<!-- Inline CSS -->
-<style>
-body {
-font-family: Arial, sans-serif;
-background-color: #f4f4f9;
-margin: 0;
-padding: 0;
-}
-.container {
-width: 80%;
-margin: 50px auto;
-background-color: #fff;
-padding: 20px;
-border-radius: 8px;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-h2 {
-text-align: center;
-color: #333;
-margin-bottom: 20px;
-}
-form {
-display: flex;
-flex-direction: column;
-}
-label {
-font-weight: bold;
-margin-bottom: 5px;
-}
-input[type="text"], input[type="email"], input[type="password"] {
-padding: 10px;
-font-size: 16px;
-margin-bottom: 15px;
-border: 1px solid #ccc;
-border-radius: 4px;
-}
-input[type="text"]:focus, input[type="email"]:focus,
-input[type="password"]:focus {
-border-color: #5b9bd5;
-outline: none;
-}
-span {
-font-size: 12px;
-color: red;
-}
-button {
-background-color: #4CAF50;
-color: white;
-padding: 10px 15px;
-border: none;
-border-radius: 4px;
-cursor: pointer;
-}
-button:disabled {
-background-color: #ccc;
-cursor: not-allowed;
-}
-.form-result {
-text-align: center;
-margin-top: 20px;
-}
-.form-result p {
-font-size: 16px;
-}
-.success {
-color: green;
-}
-.error {
-color: red;
-}
-</style>
-</head>
-<body>
-<div ng-controller="FormController" class="container">
-<h2>Registration Form</h2>
-<form name="registrationForm" ng-submit="submitForm()" novalidate>
-<div>
-<label for="name">Name:</label>
-<input type="text" id="name" name="name" ng-model="formData.name"
-required
-ng-minlength="3" ng-maxlength="50">
-<span ng-show="registrationForm.name.$touched &&
-registrationForm.name.$invalid">
-<span ng-show="registrationForm.name.$error.required">Name is
-required.</span>
-<span ng-show="registrationForm.name.$error.minlength">Name
-should be at least 3 characters long.</span>
-<span ng-show="registrationForm.name.$error.maxlength">Name
-should not exceed 50 characters.</span>
-</span>
-</div>
-<div>
-<label for="email">Email:</label>
-<input type="email" id="email" name="email"
-ng-model="formData.email" required
-ng-pattern="/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/">
-<span ng-show="registrationForm.email.$touched &&
-registrationForm.email.$invalid">
-<span ng-show="registrationForm.email.$error.required">Email is
-required.</span>
-<span ng-show="registrationForm.email.$error.pattern">Invalid
-email format.</span>
-</span>
-</div>
-<div>
-<label for="password">Password:</label>
-<input type="password" id="password" name="password"
-ng-model="formData.password"
-required ng-minlength="6" ng-maxlength="20">
-<span ng-show="registrationForm.password.$touched &&
-registrationForm.password.$invalid">
-<span
-ng-show="registrationForm.password.$error.required">Password is
-required.</span>
-<span
-ng-show="registrationForm.password.$error.minlength">Password should be
-at least 6 characters long.</span>
-<span
-ng-show="registrationForm.password.$error.maxlength">Password should
-not exceed 20 characters.</span>
-</span>
-</div>
-<div>
-<button type="submit"
-ng-disabled="registrationForm.$invalid">Submit</button>
-</div>
-</form>
-<div ng-show="formSubmitted" class="form-result">
-<div ng-if="formValid">
-<p class="success">Form submitted successfully!</p>
-</div>
-<div ng-if="!formValid">
-<p class="error">There were errors with your submission.</p>
-</div>
-</div>
-</div>
-<script src="app.js"></script>
-</body>
-</html>
+fun main() {
+    val number = 10
+    if (number % 2 == 0) {
+        println("$number is even")
+    } else {
+        println("$number is odd")
+    }
 
-##js file
+    println("\nFor Loop:")
+    for (i in 1..5) {
+        println("Iteration $i")
+    }
 
-var app = angular.module('validationApp', []);
-app.controller('FormController', ['$scope', function($scope) {
-$scope.formData = {};
-$scope.formSubmitted = false;
-$scope.formValid = false;
-$scope.submitForm = function() {
-$scope.formSubmitted = true;
-if ($scope.registrationForm.$valid) {
-$scope.formValid = true;
-console.log("Form Data:", $scope.formData);
-} else {
-$scope.formValid = false;
-}
-};
-}]);
+    println("\nWhile Loop:")
+    var counter = 1
+    while (counter <= 5) {
+        println("Counter: $counter")
+        counter++
+    }
 
-
-
-##Write a program to create and implement modules and controllers in Angular JS
-##html file
-
-<!DOCTYPE html>
-<html lang="en" ng-app="myApp">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,
-initial-scale=1.0">
-<title>AngularJS Modules and Controllers Example</title>
-<script
-src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.
-js"></script>
-<!-- Basic CSS Styles -->
-<style>
-body {
-font-family: Arial, sans-serif;
-margin: 0;
-padding: 20px;
-background-color: #f4f4f4;
-}
-h1 {
-text-align: center;
-color: #333;
-}
-p {
-text-align: center;
-color: #555;
-}
-.container {
-width: 80%;
-max-width: 500px;
-margin: 0 auto;
-background-color: #fff;
-padding: 20px;
-border: 1px solid #ccc;
-border-radius: 5px;
-}
-label {
-display: block;
-margin-bottom: 5px;
-color: #333;
-}
-input {
-width: 100%;
-padding: 8px;
-margin-bottom: 15px;
-border: 1px solid #ccc;
-border-radius: 4px;
-}
-button {
-width: 100%;
-padding: 10px;
-background-color: #4CAF50;
-color: white;
-border: none;
-border-radius: 4px;
-}
-button:hover {
-background-color: #45a049;
-}
-.saved-info {
-margin-top: 20px;
-padding: 10px;
-border: 1px solid #ccc;
-background-color: #e7f3e7;
-}
-.saved-info h3 {
-margin-top: 0;
-}
-</style>
-</head>
-<body>
-<div class="container" ng-controller="MainController">
-<h1>{{ title }}</h1>
-<p>{{ message }}</p>
-<h3>User Information</h3>
-<label for="name">Name:</label>
-<input type="text" id="name" ng-model="user.name">
-<label for="email">Email:</label>
-<input type="email" id="email" ng-model="user.email">
-<button ng-click="saveUser()">Save User</button>
-<div ng-if="saved" class="saved-info">
-<h3>User Saved:</h3>
-<p>Name: {{ user.name }}</p>
-<p>Email: {{ user.email }}</p>
-</div>
-</div>
-<script src="App.js"></script>
-</body>
-</html>
-
-##js file
-
-var app = angular.module('myApp', []);
-app.controller('MainController', function($scope) {
-$scope.title = 'AngularJS Modules and Controllers Example';
-$scope.message = 'This is a simple app to demonstrate the use of
-modules and controllers in AngularJS.';
-$scope.user = {
-name: '',
-email: ''
-};
-$scope.saved = false;
-$scope.saveUser = function() {
-$scope.saved = true;
-};
-});
-
-
-
-##Error Handling
-##html file
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,
-initial-scale=1.0">
-<title>AngularJS Form Error Handling</title>
-<script
-src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.
-2/angular.min.js"></script>
-</head>
-<body ng-app="errorApp">
-<div ng-controller="formController">
-<h3>AngularJS Form Validation Example</h3>
-<form name="userForm" ng-submit="submitForm(userForm)"
-novalidate>
-<div>
-<label for="name">Name:</label>
-<input type="text" id="name" name="name"
-ng-model="user.name" required />
-<span ng-show="userForm.name.$touched &&
-userForm.name.$invalid">Name is
-required.</span>
-</div>
-<div>
-<label for="email">Email:</label>
-<input type="email" id="email" name="email"
-ng-model="user.email" required />
-<span ng-show="userForm.email.$touched &&
-userForm.email.$invalid">
-Please enter a valid email address.
-</span>
-</div>
-<div>
-<label for="password">Password:</label>
-<input type="password" id="password" name="password"
-ng-model="user.password" required
-minlength="6" />
-<span ng-show="userForm.password.$touched &&
-userForm.password.$invalid">
-Password is required and must be at least 6 characters
-long.
-</span>
-</div>
-<div>
-<button type="submit" >Submit</button>
-</div>
-</form>
-<div ng-show="formSubmitted">
-<h4>Form Submitted Successfully!</h4>
-<p>Name: {{ user.name }}</p>
-<p>Email: {{ user.email }}</p>
-</div>
-</div>
-<script src="app.js"></script>
-</body>
-</html>
-
-##js file
-
-var app = angular.module('errorApp', []);
-app.controller('formController', function($scope) {
-$scope.user = {};
-$scope.formSubmitted = false;
-$scope.submitForm = function(userForm) {
-if (userForm.$valid) {
-$scope.formSubmitted = true;
-console.log("Form Submitted Successfully:", $scope.user);
-} else {
-alert("Please fill out the form correctly before
-submitting.");
-$scope.formSubmitted = false;
-}
-};
-});
-
-
-
-## angular form
-## html file
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width,
-initial-scale=1.0">
- <title>AngularJS Simple Form</title>
- <script
-src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.
-2/angular.min.js"></script>
- <style>
- body {
- font-family: Arial, sans-serif;
- margin: 20px;
- }
- .form-container {
- margin-bottom: 20px;
- }
- table {
- width: 100%;
- border-collapse: collapse;
- }
- th, td {
- border: 1px solid #ddd;
- padding: 8px;
- }
- th {
- background-color: #f4f4f4;
- text-align: left;
- }
- </style>
-</head>
-<body ng-app="simpleFormApp"
-ng-controller="FormController">
-<div class="form-container">
- <h2>Simple AngularJS Form</h2>
- <form ng-submit="submitForm()">
- <label for="name">Name:</label>
- <input type="text" id="name"
-ng-model="formData.name" required>
- <br><br>
- <label for="email">Email:</label>
- <input type="email" id="email"
-ng-model="formData.email" required>
- <br><br>
- <label for="age">Age:</label>
- <input type="number" id="age"
-ng-model="formData.age" required>
- <br><br>
- <button type="submit">Submit</button>
- </form>
- </div>
- <div class="data-container">
- <h2>Submitted Data</h2>
- <table>
- <thead>
- <tr>
- <th>Name</th>
- <th>Email</th>
- <th>Age</th>
- <th>Action</th>
- </tr>
- </thead>
- <tbody>
- <tr ng-repeat="data in submittedData">
- <td>{{ data.name }}</td>
- <td>{{ data.email }}</td>
- <td>{{ data.age }}</td>
- <td><button
-ng-click="removeData($index)">Remove</button></td>
-</tr>
- </tbody>
- </table>
- </div>
- <script>
- angular.module('simpleFormApp',
-[]).controller('FormController', function($scope) {
- $scope.formData = {};
- $scope.submittedData = [];
- $scope.submitForm = function() {
-$scope.submittedData.push(angular.copy($scope.formData));
- $scope.formData = {};
- };
- $scope.removeData = function(index) {
- $scope.submittedData.splice(index, 1);
- };
- });
- </script>
-</body>
-</html>
-
-
-
-##Create an app using Flutter to implement an Image Gallery
-
-import 'package:flutter/material.dart';
-void main() {
-runApp(MyApp());
-}
-class MyApp extends StatelessWidget {
-@override
-Widget build(BuildContext context) {
-return MaterialApp(
-title: 'Image Gallery',
-theme: ThemeData(
-primarySwatch: Colors.blue,
-),
-home: ImageGallery(),
-);
-}
-}
-class ImageGallery extends StatelessWidget {
-final List<String> imageUrls = [
-
-// Add your image URLs here
-
-];
-@override
-Widget build(BuildContext context) {
-return Scaffold(
-appBar: AppBar(title: Text('Image Gallery')),
-body: GridView.builder(
-gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-crossAxisCount: 2,
-),
-itemCount: imageUrls.length,
-itemBuilder: (context, index) {
-return GestureDetector(
-onTap: () {
-Navigator.push(
-context,
-MaterialPageRoute(
-builder: (context) => FullScreenImage(imageUrl:
-imageUrls[index]),
-),
-);
-},
-child: Image.network(imageUrls[index], fit: BoxFit.cover),
-);
-},
-),
-);
-}
-class FullScreenImage extends StatelessWidget {
-final String imageUrl;
-FullScreenImage({required this.imageUrl});
-@override
-Widget build(BuildContext context) {
-return Scaffold(
-appBar: AppBar(title: Text('Full Screen Image')),
-body: Center(
-child: Image.network(imageUrl),
-),
-);
-}
+    println("\nDo-While Loop:")
+    var count = 1
+    do {
+        println("Count: $count")
+        count++
+    } while (count <= 5)
 }
 
 
 
-## Create an app using Flutter to demonstrate the use of different layouts
-## Column Layout code:
+## application to display Toast message on pressing the Back button.
+#xml file
 
-import 'package:flutter/material.dart';
-void main() {
-runApp(MyApp());
-}
-class MyApp extends StatelessWidget {
-@override
-Widget build(BuildContext context) {
-return MaterialApp(
-home: ColumnLayout(),
-);
-}
-}
-class ColumnLayout extends StatelessWidget {
-@override
-Widget build(BuildContext context) {
-return Scaffold(
-appBar: AppBar(title: Text('Column Layout')),
-body: Center(
-child: Column(
-mainAxisAlignment: MainAxisAlignment.center,
-children: <Widget>[
-Container(
-color: Colors.deepPurple.shade400,
-width: 100,
-height: 100
-),
-SizedBox(height: 20),
-Container(
-color: Colors.deepPurple.shade300,
-width: 100,
-height: 100
-),
-SizedBox(height: 20),
-Container(
-color: Colors.deepPurple.shade200,
-width: 100,
-height: 100
-),
-SizedBox(height: 20),
-Container(
-color: Colors.deepPurple.shade100,
-width: 100,
-height: 100
-),
-],
-),
-),
-);
-}
-}
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Press Back Button to Display Toast"
+        android:textSize="18sp"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>
 
-## Row Layout code:
+#kt file
 
-import 'package:flutter/material.dart';
-void main() {
-runApp(MyApp());
-}
-class MyApp extends StatelessWidget {
-@override
-Widget build(BuildContext context) {
-return MaterialApp(
-home: RowLayout(),
-);
-}
-}
-class RowLayout extends StatelessWidget {
-@override
-Widget build(BuildContext context) {
-return Scaffold(
-appBar: AppBar(title: Text('Row Layout')),
-body: Row(
-mainAxisAlignment: MainAxisAlignment.center,
-children: <Widget>[
-Container(
-color: Colors.pink.shade400,
-width: 100,
-height: 100
-),
-SizedBox(height: 20),
-Container(
-color: Colors.pink.shade300,
-width: 100,
-height: 100
-),
-SizedBox(height: 20),
-Container(
-color: Colors.pink.shade200,
-width: 100,
-height: 100
-),
-SizedBox(height: 20),
-Container(
-color: Colors.pink.shade100,
-width: 100,
-height: 100
-),
-],
-),
-);
-}
-}
+package com.example.backbuttontoastapp
 
-## Stack Layout:
+import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
-import 'package:flutter/material.dart';
-void main() {
-runApp(MyApp());
-}
-class MyApp extends StatelessWidget { @override
-Widget build(BuildContext context) { return MaterialApp(
-home: StackLayout(),
-);
-}
-}
-class StackLayout extends StatelessWidget { @override
-Widget build(BuildContext context) { return Scaffold(
-appBar: AppBar(title: Text('Stack Layout')), body: Center(
-child: Stack(
-children: <Widget>[
-Container(
-color: Colors.red,
-width: 800,
-height: 800,
-),
-Container(
-color: Colors.orange, width: 700,
-height: 700,
-),
-Container(
-color: Colors.yellow,
-width: 600,
-height: 600,
-),
-Container(
-color: Colors.green,
-width: 500,
-height: 500,
-),
-Container(
-color: Colors.blue,
-width: 400,
-height: 400,
-),
-Container(
-color: Colors.indigo,
-width: 300,
-height: 300,
-),
-Container(
-color: Colors.indigo.shade900, width: 200,
-height: 200,
-),
-],
-),
-),
-);
-}
-}
+class MainActivity : AppCompatActivity() {
 
-## Grid Layout:
-
-import 'package:flutter/material.dart';
-void main() {
-runApp(MyApp());
-}
-class MyApp extends StatelessWidget { @override
-Widget build(BuildContext context) {
-return MaterialApp(
-home: GridViewLayout(),
-);
-}
-}
-class GridViewLayout extends StatelessWidget { @override
-Widget build(BuildContext context) {
-return Scaffold(
-appBar: AppBar(title: Text('GridView Layout')), body: GridView.count(
-crossAxisCount: 2,
-children: <Widget>[
-Container(
-color: Color(0xFFFFC1C1),
-width:200,
-height:200,
-),
-Container(
-color: Color(0xFFC1E1C1),
-width:200,
-height:200,
-),
-Container(
-color: Color(0xFFE1C1FF),
-width:200,
-height:200,
-),
-Container(
-color: Color(0xFFFFE1C1),
-width:200,
-height:200,
-),
-Container(
-color: Color(0xFFC1D1FF),
-width:200,
-height:200,
-),
-Container(
-color: Color(0xFFFFF1C1),
-width:200,
-height:200,
-),
-],
-),
-);
-}
-}
-
-## List Layout
-
-import 'package:flutter/material.dart';
-void main() {
-runApp(
-MaterialApp(
-home: Scaffold(
-body: ListView(
-children: [
-ListTile(
-leading: Icon(Icons.favorite, color: Colors.red), title: Text('Favorite Item'),
-subtitle: Text('This is a favorite item with a heart icon'), ),
-ListTile(
-leading: Icon(Icons.shopping_cart, color: Colors.blue), title: Text('Shopping Cart'),
-subtitle: Text('Items in your cart ready for checkout'), ),
-ListTile(
-leading: Icon(Icons.call, color: Colors.green), title: Text('Call'),
-subtitle: Text('Dial a number for a phone call'), ),
-ListTile(
-leading: Icon(Icons.alarm, color: Colors.orange), title: Text('Alarm'),
-subtitle: Text('Set an alarm to remind you'), ),
-ListTile(
-leading: Icon(Icons.camera_alt, color: Colors.purple), title: Text('Camera'),
-subtitle: Text('Capture your favorite moments'), ),
-ListTile(
-leading: Icon(Icons.home, color: Colors.teal), title: Text('Home'),
-subtitle: Text('Go to the home screen'), ),
-], ) )
-) );
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+    }
+    override fun onBackPressed() {
+        Toast.makeText(this, "Back button pressed!", Toast.LENGTH_SHORT).show()
+    }
 }
 
 
 
-## Create an app using Flutter to demonstrate navigation in an App.
+## linear layout and insert 10 games in the list view and display the selected game in the text view.
+# xml file
 
-import 'package:flutter/material.dart';
-void main() {
-runApp(MyApp());
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_selected_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selected Game will appear here"
+        android:textSize="18sp"
+        android:layout_marginBottom="20dp"/>
+
+    <ListView
+        android:id="@+id/lv_games"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+</LinearLayout>
+
+#kt file
+
+package com.example.gamelistapp
+
+import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val listView: ListView = findViewById(R.id.lv_games)
+        val selectedGameText: TextView = findViewById(R.id.tv_selected_game)
+
+        val games = listOf("Football", "Basketball", "Tennis", "Cricket", "Baseball", 
+                           "Table Tennis", "Badminton", "Rugby", "Volleyball", "Hockey")
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, games)
+        listView.adapter = adapter
+
+        listView.setOnItemClickListener { _, _, position, _ ->
+            selectedGameText.text = "Selected Game: ${games[position]}"
+        }
+    }
 }
-class MyApp extends StatelessWidget { @override
-Widget build(BuildContext context) {
-return MaterialApp(
-title: 'Flutter Navigation Demo',
-theme: ThemeData(
-primarySwatch: Colors.blue,
-),
-initialRoute: '/',
-routes: {
-'/': (context) => HomeScreen(),
-'/second': (context) => SecondScreen(), '/third': (context) => ThirdScreen(),
-},
-);
+
+
+
+## Kotlin to implement control structures and loops.
+
+fun main() {
+    val number = 10
+    if (number > 0) {
+        println("The number is positive")
+    } else {
+        println("The number is non-positive")
+    }
+
+    println("\nFor loop Example:")
+    for (i in 1..5) {
+        println("Iteration number: $i")
+    }
+
+    println("\nWhile loop Example:")
+    var counter = 1
+    while (counter <= 5) {
+        println("Counter is: $counter")
+        counter++
+    }
+
+    println("\nWhen Expression Example:")
+    val dayOfWeek = 3
+    when (dayOfWeek) {
+        1 -> println("Today is Monday")
+        2 -> println("Today is Tuesday")
+        3 -> println("Today is Wednesday")
+        4 -> println("Today is Thursday")
+        5 -> println("Today is Friday")
+        6 -> println("Today is Saturday")
+        7 -> println("Today is Sunday")
+        else -> println("Invalid day")
+    }
 }
+
+
+
+## Android application demonstrating response to event/user interaction for Checkbox Radio button Button Spinner.
+# xml file
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check me" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radio_button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Option 1" />
+
+        <RadioButton
+            android:id="@+id/radio_button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Option 2" />
+    </RadioGroup>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>
+
+#kt file
+
+package com.example.eventhandlingapp
+
+import android.os.Bundle
+import android.view.View
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var checkbox: CheckBox
+    private lateinit var radioGroup: RadioGroup
+    private lateinit var spinner: Spinner
+    private lateinit var button: Button
+
+    private val spinnerData = listOf("Option A", "Option B", "Option C")
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        checkbox = findViewById(R.id.checkbox)
+        radioGroup = findViewById(R.id.radioGroup)
+        spinner = findViewById(R.id.spinner)
+        button = findViewById(R.id.button)
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerData)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+
+        checkbox.setOnCheckedChangeListener { _, isChecked ->
+            Toast.makeText(this, if (isChecked) "Checked" else "Unchecked", Toast.LENGTH_SHORT).show()
+        }
+
+        radioGroup.setOnCheckedChangeListener { _, checkedId ->
+            val message = if (checkedId == R.id.radio_button1) "Option 1" else "Option 2"
+            Toast.makeText(this, "Selected: $message", Toast.LENGTH_SHORT).show()
+        }
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                Toast.makeText(this@MainActivity, "Selected: ${spinnerData[position]}", Toast.LENGTH_SHORT).show()
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
+
+        button.setOnClickListener {
+            val checkboxStatus = if (checkbox.isChecked) "Checked" else "Unchecked"
+            val selectedRadio = if (radioGroup.checkedRadioButtonId == R.id.radio_button1) "Option 1" else "Option 2"
+            val selectedSpinner = spinner.selectedItem.toString()
+
+            Toast.makeText(this, "Checkbox: $checkboxStatus\nRadio: $selectedRadio\nSpinner: $selectedSpinner", Toast.LENGTH_LONG).show()
+        }
+    }
 }
-class HomeScreen extends StatelessWidget { @override
-Widget build(BuildContext context) {
-return Scaffold(
-appBar: AppBar(title: Text("Home Screen")), body: Center(
-child: ElevatedButton(
-onPressed: () {
-Navigator.pushNamed(context, '/second'); },
-child: Text("Go to Second Screen"),
-),
-),
-);
-}
-}
-class SecondScreen extends StatelessWidget { @override
-Widget build(BuildContext context) {
-return Scaffold(
-appBar: AppBar(title: Text("Second Screen")), body: Center(
-child: Column(
-mainAxisAlignment: MainAxisAlignment.center, children: [
-ElevatedButton(
-onPressed: () {
-Navigator.pushNamed(context, '/third');
-},
-child: Text("Go to Third Screen"),
-),
-ElevatedButton(
-onPressed: () {
-Navigator.pop(context);
-},
-child: Text("Go Back to Home Screen"),
-),
-],
-),
-),
-);
-}
-}
-class ThirdScreen extends StatelessWidget { @override
-Widget build(BuildContext context) {
-return Scaffold(
-appBar: AppBar(title: Text("Third Screen")), body: Center(
-child: ElevatedButton(
-onPressed: () {
-Navigator.pop(context);
-},
-child: Text("Go Back to Second Screen"), ),
-),
-);
-}
+
+
+
+## linear layout and insert 10 animals in the list view and display the appropriate Toast.
+# xml file
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <ListView
+        android:id="@+id/animalListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
+
+# kt file
+
+package com.example.animalapp
+
+import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val animals = listOf(
+            "Lion", "Tiger", "Elephant", "Giraffe", "Zebra",
+            "Monkey", "Kangaroo", "Panda", "Penguin", "Koala"
+        )
+
+        val animalListView: ListView = findViewById(R.id.animalListView)
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, animals)
+        animalListView.adapter = adapter
+
+        animalListView.setOnItemClickListener { parent, view, position, id ->
+            val clickedAnimal = parent.getItemAtPosition(position).toString()
+            
+            Toast.makeText(this, "You selected: $clickedAnimal", Toast.LENGTH_SHORT).show()
+        }
+    }
 }
